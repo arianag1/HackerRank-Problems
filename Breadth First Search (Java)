@@ -59,8 +59,7 @@ System.out.print("\n");
 
  }
 
-public static LinkedList<Integer>
-BFS(TreeMap<Integer,LinkedList<Integer>> famtree){
+public static LinkedList<Integer> BFS(TreeMap<Integer,LinkedList<Integer>> famtree){
 
 //create a linkedlist to hold the parent nodes and their children, in the correct
 //order that they were visited
