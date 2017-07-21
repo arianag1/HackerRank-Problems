@@ -1,0 +1,90 @@
+Personalized Breadth First Search Algorithm (useful for dikjstra's algorithm and generalized graph theory problems for finding 
+the shortest paths)
+
+Pusedocode:
+                                                            |**********************|      
+                                                            |     Main function    |
+                                                            |**********************|
+1. Create a TreeMap to store the values of the parent node and all of its children (stored in a LinkedList)
+2. Create a scanner object to take in user input
+3. Add the parent node to TreeMap and child node(s) to linkedList
+ ---> if the parent node is not already in the Tree, add it along with its child 
+ ---> otherwise:
+    ---> if child is not already included in the tree (parents's linkedlist), add the child and add the parent and its linkedlist to 
+         the tree
+//NOTE: MAKE SURE THAT LINKEDLIST IS ALREADY SORTED
+                                                            |**********************|            
+                                                            |In a separate function|        
+                                                            |**********************|
+1. Create a linkedList to store all of the visited nodes 
+2. Add first parent node to the linkedlist
+3. for each parent node in the tree, if the linkedlist doesn't already contain it, add it to the linkedlist
+4. for every parent node's child, if the linkedlist doesn't already contain it, add each child node
+5. once the tree has been searched and all of the nodes have been added, return the linkedlist object.
+
+
+
+
+BREADTH FIRST SEARCH CODE:
+
+import java.util.*;
+public class BreadthFirstSearch{
+
+public static void main(String [] args){
+
+TreeMap<Integer, LinkedList<Integer>> family = new TreeMap<Integer,LinkedList<Integer>>();
+Scanner scan = new Scanner(System.in);
+while(scan.hasNextInt() && scan.hasNextInt()){
+int child = scan.nextInt();
+int parent = scan.nextInt();
+
+if(!family.containsKey(parent)){                  
+LinkedList<Integer> newchildren = new LinkedList<Integer>();
+        newchildren.add(child);
+        family.put(parent, newchildren);
+    }
+  else{
+    LinkedList<Integer> children = family.get(parent);
+    if(!children.contains(child)){
+        children.add(child);
+        family.put(parent, children);
+           }
+         }
+    }
+     LinkedList<Integer> store = BFS(family);
+     for(inn nodes: store){
+       System.out.print(nodes + " ");
+ }   
+System.out.print("\n");
+
+ }
+
+public static LinkedList<Integer>
+BFS(TreeMap<Integer,LinkedList<Integer>> famtree){
+
+//create a linkedlist to hold the parent nodes and their children, in the correct
+//order that they were visited
+
+LinkedList<Integer> queue = new
+LinkedList<Integer>();
+
+for(int parentNode : famtree.keySet()){
+  if(!queue.contains(parentNode)){
+    queue.add(parentNode);
+   }
+for(int childNode : famtree.get(parentNode)){
+  if(!queue.contains(childNode)){
+    queue.add(childNode);
+   }
+  }
+ }
+   return queue;
+
+  }
+
+}
+
+ 
+
+ 
+
