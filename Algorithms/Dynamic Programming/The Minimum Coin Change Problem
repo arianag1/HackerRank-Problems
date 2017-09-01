@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+public class Coin{
+     static int minCoins(int [] coins, int sum){
+        for(int currentIndex = 1; currentIndex <= sum; currentIndex++){
+            if(coins[currentIndex] != 1){
+                int value =  currentIndex - 1;
+                coins[currentIndex] =  coins[value] + coins[currentIndex-value];
+            }
+        }
+        return coins[sum];
+    }
+    static void setArray(int [] ar){
+        for(int i = 1; i < ar.length; i++){
+            ar[i] = -1;
+        }
+    }
+    public static void main(String [] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int [] coins = new int [n+1];
+        setArray(coins);
+      
+        while(scan.hasNextInt()){
+            coins[scan.nextInt()] = 1;
+        }
+        int result = minCoins(coins,n);
+        System.out.println(result);
+    }
+}
