@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String super_reduced_string(String s){
+        StringBuilder sCopy = new StringBuilder(s);
+        int i = 1;
+        while(i < sCopy.length()){
+            if(sCopy.charAt(i-1) == sCopy.charAt(i)){
+                sCopy.delete(i-1, i+1);
+                i = 0;
+            }
+            i++;
+        }
+        String result = sCopy.toString();
+            if(result.equals("")){
+                return "Empty String";
+            }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String result = super_reduced_string(s);
+        System.out.println(result);
+    }
+}
